@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import Chess from 'chess.js';
 
 import {updatePosition, highlightSquare} from '../actions/index';
+import Highlight from '../components/highlight';
+import MoveHelper from '../components/move_helper';
 
 const pattern = [
     'w','b','w','b','w','b','w','b',
@@ -27,6 +29,10 @@ const square_codes = [
 ];
 
 class Chessboard extends Component {
+    componentWillUpdate (nextProps) {
+        this.chess = new Chess(nextProps.fen);
+    }
+
     render () {
         const squares = [...Array(64).keys()].map(n => {
             const colorClass = pattern[n] === 'w'
@@ -45,18 +51,26 @@ class Chessboard extends Component {
                 onClick={({target}) => this.onClickHandler(target)}>
                 {squares}
                 {this.props.fen ? getPieces(this.props.fen, this.props.move): []}
-                {getHighlight(this.props.highlight)}
+                {this.props.highlight && <Highlight square={this.props.highlight} />}
+                {this.props.highlight &&
+                    this.getLegalMoves(this.props.highlight).map(square => {
+                        return <MoveHelper key={`guide-${square}`}
+                            square={square} />;
+                    })
+                }
             </div>
         );
     }
 
     onClickHandler (elem) {
         const isPiece = elem.classList.contains('piece');
+
         const selected = isPiece
             ? extractSquare(elem.classList)
             : elem.id;
 
         if (this.props.highlight) {
+            console.log(this.props.highlight, selected);
             this.props.updatePosition({
                 from: this.props.highlight,
                 to: selected
@@ -66,20 +80,26 @@ class Chessboard extends Component {
         }
     }
 
+    //get all legal moves from the provided origin square
+    getLegalMoves (origin) {
+        return this.chess.moves({verbose: true})
+            .filter(move => {
+                return move.from === origin;
+            })
+            .map(move => {
+                return move.to;
+            });
+    }
+
 }
 
 function extractSquare (classList) {
     const classes = String.prototype.split.call(classList, ' ');
-    let file, rank;
-    classes.forEach(name => {
-        if (name.indexOf('file-') > -1) {
-            file = name.charAt(name.length - 1);
-        }
-        if (name.indexOf('rank-') > -1) {
-            rank = name.charAt(name.length - 1);
-        }
+
+    return classes.find(className => {
+        console.log(className);
+        return /^[a-h][1-8]$/.test(className);
     });
-    return file + rank;
 }
 
 function mapStateToProps ({position}) {
@@ -110,18 +130,13 @@ function getPieces (fen, move) {
 }
 
 function getPiece (piece, code, move) {
-    if (!move) {
-        return;
-    }
     const square = code === move.from ? move.to : code;
-    const file = `file-${square.charAt(0)}`;
-    const rank =  `rank-${square.charAt(1)}`;
     const type = `${piece.color}${getPieceName(piece.type)}`;
     const key = piece.type + code;
 
     return (
         <piece key={key}
-            className={['piece', file, rank, type].join(' ')}>
+            className={['piece', square, type].join(' ')}>
         </piece>
     );
 }
@@ -135,18 +150,4 @@ function getPieceName (code) {
         q: 'queen',
         k: 'king'
     }[code];
-}
-
-function getHighlight (code) {
-    if (!code) {
-        return;
-    }
-    const file = `file-${code.charAt(0)}`;
-    const rank =  `rank-${code.charAt(1)}`;
-    const className = [
-        'square', 'highlight', file, rank
-    ].join(' ');
-    return (
-        <div className={className}></div>
-    );
 }

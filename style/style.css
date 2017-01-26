@@ -95,6 +95,11 @@ body {
     background-image: url('../assets/bpawn.png');
 }
 
+.guide {
+    background-image: url('../assets/guide.png');
+    z-index: 2;
+}
+
 .file-a {
     left: 0%;
 }
