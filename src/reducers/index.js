@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import PositionReducer from './reducer_position';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+    position: PositionReducer
 });
 
 export default rootReducer;
