@@ -1,7 +1,9 @@
 import Chess from 'chess.js';
 
 const chess = new Chess();
-
+//chess.clear();
+//chess.put({ type: 'k', color: 'w'}, 'e1');
+//chess.put({ type: 'k', color: 'b'}, 'e8');
 export const INITIAL_POSITION = chess.fen();
 export const UPDATE_POSITION = 'UPDATE_POSITION';
 export const RESET_POSITION = 'RESET_POSITION';

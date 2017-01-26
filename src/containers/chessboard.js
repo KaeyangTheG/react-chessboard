@@ -57,8 +57,6 @@ class Chessboard extends Component {
             : elem.id;
 
         if (this.props.highlight) {
-            //this.movePiece(this.props.highlight, selected);
-            //this.removeHighlight();
             this.props.updatePosition({
                 from: this.props.highlight,
                 to: selected
@@ -68,20 +66,6 @@ class Chessboard extends Component {
         }
     }
 
-    movePiece (from, to) {
-        const fromFile = `file-${from.charAt(0)}`;
-        const fromRank = `rank-${from.charAt(1)}`;
-        const toFile = `file-${to.charAt(0)}`;
-        const toRank = `rank-${to.charAt(1)}`;
-        const piece = document.querySelector(`.${fromFile}.${fromRank}`);
-        piece.classList.remove(fromFile, fromRank);
-        piece.classList.add(toFile, toRank);
-    }
-
-    removeHighlight () {
-        const highlight = document.querySelector('.highlight');
-        document.querySelector('.board').removeChild(highlight);
-    }
 }
 
 function extractSquare (classList) {
@@ -113,24 +97,27 @@ export default connect(mapStateToProps,
 
 function getPieces (fen, move) {
     const board = new Chess(fen);
-
+    move = move || {};
     return square_codes
-        .filter(code => board.get(code))
+        .filter(code => {
+            return code !== move.to &&
+                (board.get(code) || code === move.from);
+        })
         .map(code => {
-            return getPiece(board.get(code), code, move);
+            const piece = board.get(code) || board.get(move.to);
+            return getPiece(piece, code, move);
         });
 }
 
 function getPiece (piece, code, move) {
-    if (!piece) {
+    if (!move) {
         return;
     }
-    const file = `file-${code.charAt(0)}`;
-    const rank =  `rank-${code.charAt(1)}`;
+    const square = code === move.from ? move.to : code;
+    const file = `file-${square.charAt(0)}`;
+    const rank =  `rank-${square.charAt(1)}`;
     const type = `${piece.color}${getPieceName(piece.type)}`;
-    const key = move && move.to === code
-        ? piece.type + move.from
-        : piece.type + code;
+    const key = piece.type + code;
 
     return (
         <piece key={key}
