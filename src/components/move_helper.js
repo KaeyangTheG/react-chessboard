@@ -10,9 +10,7 @@ export default (props) => {
 
     return (
       <ReactCSSTransitionGroup
-          transitionName="example"
-          appear="example-appear"
-          appearActive="example-appear-active"
+          transitionName="fade"
           transitionAppear={true}
           transitionAppearTimeout={100}
           transitionEnter={false}

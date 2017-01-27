@@ -118,11 +118,11 @@ body {
   transition: opacity 300ms ease-in;
 }
 
-.example-appear {
+.fade-appear {
     opacity: 0.01;
 }
 
-.example-appear.example-appear-active {
+.fade-appear.fade-appear-active {
     opacity: 1;
 }
 
