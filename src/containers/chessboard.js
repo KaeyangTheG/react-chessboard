@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Chess from 'chess.js';
 
 import {updatePosition, highlightSquare} from '../actions/index';
+import Chesspiece from '../components/chesspiece';
 import Highlight from '../components/highlight';
-import MoveHelper from '../components/move_helper';
+import Movehelper from '../components/move_helper';
 
 const pattern = [
     'w','b','w','b','w','b','w','b',
@@ -50,14 +52,19 @@ class Chessboard extends Component {
             <div className="board"
                 onClick={({target}) => this.onClickHandler(target)}>
                 {squares}
-                {this.props.fen ? getPieces(this.props.fen, this.props.move): []}
+                {this.props.fen && getPieces(this.props.fen, this.props.move)}
                 {this.props.highlight && <Highlight square={this.props.highlight} />}
-                {this.props.highlight &&
-                    this.getLegalMoves(this.props.highlight).map(square => {
-                        return <MoveHelper key={`guide-${square}`}
-                            square={square} />;
-                    })
-                }
+                <ReactCSSTransitionGroup
+                    transitionName="example"
+                    transitionEnterTimeout={1}
+                    transitionLeaveTimeout={1}>
+                    {this.props.highlight &&
+                        this.getLegalMoves(this.props.highlight).map(square => {
+                            return <Movehelper key={`guide-${square}`}
+                                square={square} />;
+                        })
+                    }
+                </ReactCSSTransitionGroup >
             </div>
         );
     }
@@ -70,7 +77,6 @@ class Chessboard extends Component {
             : elem.id;
 
         if (this.props.highlight) {
-            console.log(this.props.highlight, selected);
             this.props.updatePosition({
                 from: this.props.highlight,
                 to: selected
@@ -97,7 +103,6 @@ function extractSquare (classList) {
     const classes = String.prototype.split.call(classList, ' ');
 
     return classes.find(className => {
-        console.log(className);
         return /^[a-h][1-8]$/.test(className);
     });
 }
@@ -125,29 +130,7 @@ function getPieces (fen, move) {
         })
         .map(code => {
             const piece = board.get(code) || board.get(move.to);
-            return getPiece(piece, code, move);
+            return <Chesspiece key={piece.type + code}
+                piece={piece} code={code} move={move} />
         });
-}
-
-function getPiece (piece, code, move) {
-    const square = code === move.from ? move.to : code;
-    const type = `${piece.color}${getPieceName(piece.type)}`;
-    const key = piece.type + code;
-
-    return (
-        <piece key={key}
-            className={['piece', square, type].join(' ')}>
-        </piece>
-    );
-}
-
-function getPieceName (code) {
-    return {
-        p: 'pawn',
-        n: 'knight',
-        b: 'bishop',
-        r: 'rook',
-        q: 'queen',
-        k: 'king'
-    }[code];
 }
