@@ -1,13 +1,21 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default (props) => {
-    //const file = `file-${props.square.charAt(0)}`;
-    //const rank =  `rank-${props.square.charAt(1)}`;
     const className = [
         'piece', 'guide', props.square
     ].join(' ');
 
     return (
-        <div className={className}></div>
+      <ReactCSSTransitionGroup
+          transitionName="example"
+          appear="example-appear"
+          appearActive="example-appear-active"
+          transitionAppear={true}
+          transitionAppearTimeout={100}
+          transitionEnter={false}
+          transitionLeave={false}>
+            <div className={className}></div>
+      </ReactCSSTransitionGroup>
     );
 };

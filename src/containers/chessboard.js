@@ -54,17 +54,12 @@ class Chessboard extends Component {
                 {squares}
                 {this.props.fen && getPieces(this.props.fen, this.props.move)}
                 {this.props.highlight && <Highlight square={this.props.highlight} />}
-                <ReactCSSTransitionGroup
-                    transitionName="example"
-                    transitionEnterTimeout={1}
-                    transitionLeaveTimeout={1}>
-                    {this.props.highlight &&
-                        this.getLegalMoves(this.props.highlight).map(square => {
-                            return <Movehelper key={`guide-${square}`}
-                                square={square} />;
-                        })
-                    }
-                </ReactCSSTransitionGroup >
+                {this.props.highlight &&
+                    this.getLegalMoves(this.props.highlight).map(square => {
+                        return <Movehelper key={`guide-${square}`}
+                            square={square} />;
+                    })
+                }
             </div>
         );
     }
