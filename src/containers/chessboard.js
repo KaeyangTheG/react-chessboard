@@ -57,7 +57,7 @@ class Chessboard extends Component {
                 {this.props.highlight &&
                     this.getLegalMoves(this.props.highlight).map(square => {
                         return <Movehelper key={`guide-${square}`}
-                            square={square} />;
+                            square={square} origin={this.props.highlight} />;
                     })
                 }
             </div>
