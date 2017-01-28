@@ -18,10 +18,10 @@ export default ({piece, square, clickHandler, from = null}) => {
         <ReactCSSTransitionGroup
             transitionName= {{
                 appear: from || square,
-                appearActive: square
+                appearActive: `${square}-active`,
             }}
             transitionAppear={true}
-            transitionAppearTimeout={1}
+            transitionAppearTimeout={400}
             transitionEnter={false}
             transitionLeave={false}>
             <piece onClick={clickHandler} className={className}>

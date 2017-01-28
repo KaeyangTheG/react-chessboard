@@ -106,48 +106,48 @@ body {
     z-index: 2;
 }
 
-.fade-leave.fade-leave-active,
 .fade-appear {
     opacity: 0.01;
 }
 
-.fade-leave,
 .fade-appear.fade-appear-active {
     opacity: 1;
 }
 
-.scale-appear {
-    transform: scale(0.5);
-}
-.scale-appear-active {
-    transform: scale(1.0);
+.fade-leave {
+    opacity: 1;
 }
 
+.fade-leave-active {
+    opacity: 0.01;
+    transition: all 0.4s ease-in;
+}
 .moving {
     z-index: 3;
 }
+
 .move-1 {
     transition: all 0.2s ease-in;
 }
 .move-2 {
-    transition: all 0.3s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 .move-3 {
-    transition: all 0.4s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 .move-4 {
-    transition: all 0.5s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 .move-5 {
-    transition: all 0.6s ease-in;
+    transition: all 0.4s ease-in;
 }
 .move-6 {
-    transition: all 0.7s ease-in;
+    transition: all 0.4s ease-in;
 }
 
 .move-7 {
-    transition: all 0.8s ease-in;
+    transition: all 0.4s ease-in;
 }

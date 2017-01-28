@@ -16,7 +16,7 @@ export default ({square, origin, clickHandler, isCapture=false}) => {
       <ReactCSSTransitionGroup
           transitionName="fade"
           transitionAppear={true}
-          transitionAppearTimeout={100}
+          transitionAppearTimeout={400}
           transitionEnter={false}
           transitionLeave={false}>
             <div className={className} onClick={clickHandler}></div>

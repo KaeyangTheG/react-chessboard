@@ -134,7 +134,10 @@
     left: 25%;
     top: 12.5%;
 }
-
+.c6 {
+    left: 25%;
+    top: 25%;
+}
 .c5 {
     left: 25%;
     top: 37.5%;
@@ -292,7 +295,7 @@
     top: 12.5%;
 }
 .h6 {
-    left: 87.5%
+    left: 87.5%;
     top: 25%;
 }
 .h5 {
@@ -315,7 +318,260 @@
     left: 87.5%;
     top: 87.5%;
 }
-.c6 {
+/* -active version of classes because of stupidity*/
+.a8-active {
+    left: 0%;
+    top: 0%;
+}
+.a7-active {
+    left: 0%;
+    top: 12.5%;
+}
+.a6-active {
+    left: 0%;
+    top: 25%;
+}
+.a5-active {
+    left: 0%;
+    top: 37.5%;
+}
+.a4-active {
+    left: 0%;
+    top: 50%;
+}
+.a3-active {
+    left: 0%;
+    top: 62.5%;
+}
+.a2-active {
+    left: 0%;
+    top: 75%;
+}
+.a1-active {
+    left: 0%;
+    top: 87.5%;
+}
+.b8-active {
+    left: 12.5%;
+    top: 0%;
+}
+.b7-active {
+    left: 12.5%;
+    top: 12.5%;
+}
+.b6-active {
+    left: 12.5%;
+    top: 25%;
+}
+.b5-active {
+    left: 12.5%;
+    top: 37.5%;
+}
+.b4-active {
+    left: 12.5%;
+    top: 50%;
+}
+.b3-active {
+    left: 12.5%;
+    top: 62.5%;
+}
+.b2-active {
+    left: 12.5%;
+    top: 75%;
+}
+.b1-active {
+    left: 12.5%;
+    top: 87.5%;
+}
+.c8-active {
+    left: 25%;
+    top: 0%;
+}
+.c7-active {
+    left: 25%;
+    top: 12.5%;
+}
+.c6-active {
     left: 25%;
     top: 25%;
+}
+.c5-active {
+    left: 25%;
+    top: 37.5%;
+}
+.c4-active {
+    left: 25%;
+    top: 50%;
+}
+.c3-active {
+    left: 25%;
+    top: 62.5%;
+}
+.c2-active {
+    left: 25%;
+    top: 75%;
+}
+.c1-active {
+    left: 25%;
+    top: 87.5%;
+}
+.d8-active {
+    left: 37.5%;
+    top: 0%;
+}
+.d7-active {
+    left: 37.5%;
+    top: 12.5%;
+}
+.d6-active {
+    left: 37.5%;
+    top: 25%;
+}
+.d5-active {
+    left: 37.5%;
+    top: 37.5%;
+}
+.d4-active {
+    left: 37.5%;
+    top: 50%;
+}
+.d3-active {
+    left: 37.5%;
+    top: 62.5%;
+}
+.d2-active {
+    left: 37.5%;
+    top: 75%;
+}
+.d1-active {
+    left: 37.5%;
+    top: 87.5%;
+}
+.e8-active {
+    left: 50%;
+    top: 0%;
+}
+.e7-active {
+    left: 50%;
+    top: 12.5%;
+}
+.e6-active {
+    left: 50%;
+    top: 25%;
+}
+.e5-active {
+    left: 50%;
+    top: 37.5%;
+}
+.e4-active {
+    left: 50%;
+    top: 50%;
+}
+.e3-active {
+    left: 50%;
+    top: 62.5%;
+}
+.e2-active {
+    left: 50%;
+    top: 75%;
+}
+.e1-active {
+    left: 50%;
+    top: 87.5%;
+}
+.f8-active {
+    left: 62.5%;
+    top: 0%;
+}
+.f7-active {
+    left: 62.5%;
+    top: 12.5%;
+}
+.f6-active {
+    left: 62.5%;
+    top: 25%;
+}
+.f5-active {
+    left: 62.5%;
+    top: 37.5%;
+}
+.f4-active {
+    left: 62.5%;
+    top: 50%;
+}
+.f3-active {
+    left: 62.5%;
+    top: 62.5%;
+}
+.f2-active {
+    left: 62.5%;
+    top: 75%;
+}
+.f1-active {
+    left: 62.5%;
+    top: 87.5%;
+}
+.g8-active {
+    left: 75%;
+    top: 0%;
+}
+.g7-active {
+    left: 75%;
+    top: 12.5%;
+}
+.g6-active {
+    left: 75%;
+    top: 25%;
+}
+.g5-active {
+    left: 75%;
+    top: 37.5%;
+}
+.g4-active {
+    left: 75%;
+    top: 50%;
+}
+.g3-active {
+    left: 75%;
+    top: 62.5%;
+}
+.g2-active {
+    left: 75%;
+    top: 75%;
+}
+.g1-active {
+    left: 75%;
+    top: 87.5%;
+}
+.h8-active {
+    left: 87.5%;
+    top: 0%;
+}
+.h7-active {
+    left: 87.5%;
+    top: 12.5%;
+}
+.h6-active {
+    left: 87.5%;
+    top: 25%;
+}
+.h5-active {
+    left: 87.5%;
+    top: 37.5%;
+}
+.h4-active {
+    left: 87.5%;
+    top: 50%;
+}
+.h3-active {
+    left: 87.5%;
+    top: 62.5%;
+}
+.h2-active {
+    left: 87.5%;
+    top: 75%;
+}
+.h1-active {
+    left: 87.5%;
+    top: 87.5%;
 }
