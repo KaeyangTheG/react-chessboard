@@ -13,7 +13,9 @@ export default ({piece, square, clickHandler, from = null}) => {
         `move-${from ? getSquareDistance(from, square) : 3}`,
         from ? 'moving' : ''
     ].join(' ');
-
+    if (from) {
+        console.log(from || square,":",`${square}-active`);
+    }
     return (
         <ReactCSSTransitionGroup
             transitionName= {{

@@ -98,20 +98,13 @@ body {
 .guide {
     background-image: url('../assets/guide.png');
     z-index: 2;
+    transition: all 0.1s ease-in;
 }
 
 .capture-guide {
     box-sizing: border-box;
     border:5px solid #ff265c;
     z-index: 2;
-}
-
-.fade-appear {
-    opacity: 0.01;
-}
-
-.fade-appear.fade-appear-active {
-    opacity: 1;
 }
 
 .fade-leave {
@@ -126,28 +119,22 @@ body {
     z-index: 3;
 }
 
-.move-1 {
-    transition: all 0.2s ease-in;
-}
+
+.move-1,
 .move-2 {
     transition: all 0.2s ease-in;
 }
 
-.move-3 {
-    transition: all 0.2s ease-in;
-}
-
+.move-3,
 .move-4 {
-    transition: all 0.2s ease-in;
+    transition: all 0.3s ease-in;
 }
 
-.move-5 {
-    transition: all 0.4s ease-in;
-}
+.move-5,
 .move-6 {
     transition: all 0.4s ease-in;
 }
 
 .move-7 {
-    transition: all 0.4s ease-in;
+    transition: all 0.5s ease-in;
 }

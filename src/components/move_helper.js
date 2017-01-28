@@ -7,14 +7,18 @@ export default ({square, origin, clickHandler, isCapture=false}) => {
     const distance = getSquareDistance(square, origin);
     const className = [
         'piece',
-        isCapture ? 'capture-guide' : 'guide',
-        square,
-        `move-${distance}`
+        isCapture ? 'guide' : 'guide',
+        `${square.charAt(0)}file`,
+        `rank${square.charAt(1)}`,
+        `guide-move-${distance}`
     ].join(' ');
 
     return (
       <ReactCSSTransitionGroup
-          transitionName="fade"
+          transitionName={{
+              appear: origin,
+              appearActive: `${square}-active`
+          }}
           transitionAppear={true}
           transitionAppearTimeout={400}
           transitionEnter={false}
