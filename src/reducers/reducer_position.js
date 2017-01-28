@@ -1,4 +1,5 @@
-import {INITIAL_POSITION, UPDATE_POSITION, HIGHLIGHT_SQUARE} from '../actions/index';
+import {INITIAL_POSITION, UPDATE_POSITION,
+  HIGHLIGHT_SQUARE, CLEAR_HIGHLIGHT} from '../actions/index';
 
 const INITIAL_STATE = {
     fen: INITIAL_POSITION,
@@ -19,6 +20,13 @@ export default function (state = INITIAL_STATE, action) {
                 fen: state.fen,
                 move: null,
                 highlight: action.payload
+            };
+        }
+        case CLEAR_HIGHLIGHT: {
+            return {
+                highlight: null,
+                move: null,
+                fen: state.fen
             };
         }
         default:

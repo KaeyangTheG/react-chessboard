@@ -6,6 +6,7 @@ export const INITIAL_POSITION = chess.fen();
 export const UPDATE_POSITION = 'UPDATE_POSITION';
 export const RESET_POSITION = 'RESET_POSITION';
 export const HIGHLIGHT_SQUARE = 'HIGHLIGHT_SQUARE';
+export const CLEAR_HIGHLIGHT = 'CLEAR_HIGHLIGHT';
 
 
 export function updatePosition (move) {
@@ -33,3 +34,9 @@ export function highlightSquare (square) {
         payload: square
     };
 };
+
+export function clearHighlight () {
+    return {
+        type: CLEAR_HIGHLIGHT
+    };
+}

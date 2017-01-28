@@ -1,10 +1,17 @@
 import React from 'react';
+import {getSquareDistance} from '../utils/board_util';
 
-export default ({piece, code, move}) => {
+export default ({piece, square, clickHandler, from = null}) => {
     const type = `${piece.color}${getPieceName(piece.type)}`;
-    const square = code === move.from ? move.to : code;
+    const className = [
+        'piece',
+        square,
+        type,
+        `move-${from ? getSquareDistance(from, square) : 3}`,
+        from ? 'moving' : ''
+    ].join(' ');
     return (
-        <piece className={['piece', square, type].join(' ')}>
+        <piece onClick={clickHandler} className={className}>
         </piece>
     );
 };
