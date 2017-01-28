@@ -50,7 +50,6 @@ body {
     background-size: 85% auto;
     background-position: center center;
     background-repeat: no-repeat;
-    transition: all 0.4s ease-in;
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
     transform: translateZ(0);
@@ -107,12 +106,21 @@ body {
     z-index: 2;
 }
 
+.fade-leave.fade-leave-active,
 .fade-appear {
     opacity: 0.01;
 }
 
+.fade-leave,
 .fade-appear.fade-appear-active {
     opacity: 1;
+}
+
+.scale-appear {
+    transform: scale(0.5);
+}
+.scale-appear-active {
+    transform: scale(1.0);
 }
 
 .moving {

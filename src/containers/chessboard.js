@@ -7,7 +7,7 @@ import {updatePosition, highlightSquare, clearHighlight} from '../actions/index'
 import Chesspiece from '../components/chesspiece';
 import Highlight from '../components/highlight';
 import Movehelper from '../components/move_helper';
-import {PATTERN, SQUARES} from '../util/board_util';
+import {PATTERN, SQUARES} from '../utils/board_util';
 
 class Chessboard extends Component {
     componentWillUpdate (nextProps) {
@@ -76,15 +76,12 @@ class Chessboard extends Component {
         const board = this.board || new Chess(this.props.fen);
 
         return SQUARES
-            .filter(code => {
-                return code !== move.to &&
-                    (board.get(code) || code === move.from);
+            .filter(square => {
+                return board.get(square);
             })
-            .map(code => {
-                const piece = board.get(code) || board.get(move.to);
-                const square = code === move.from ? move.to : code;
+            .map(square => {
+                const piece = board.get(square) || board.get(move.to);
                 let clickHandler;
-
 
                 if (this.props.highlight) {
                     clickHandler = this.props.clearHighlight;
@@ -92,9 +89,9 @@ class Chessboard extends Component {
                     clickHandler = this.props.highlightSquare.bind(this, square);
                 }
 
-                return <Chesspiece key={piece.type + code}
+                return <Chesspiece key={piece.type + square}
                     piece={piece} square={square}
-                    from = {code === move.from && move.from}
+                    from = {square === move.to && move.from}
                     clickHandler={clickHandler} />
             });
     }
