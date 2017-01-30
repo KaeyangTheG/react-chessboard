@@ -80,19 +80,22 @@ class Chessboard extends Component {
                 return board.get(square);
             })
             .map(square => {
-                const piece = board.get(square) || board.get(move.to);
+                const piece = board.get(square);
                 let clickHandler;
 
-                if (this.props.highlight) {
-                    clickHandler = this.props.clearHighlight;
-                } else if (board.turn() === piece.color) {
+                if (board.turn() === piece.color &&
+                    square !== this.props.highlight) {
                     clickHandler = this.props.highlightSquare.bind(this, square);
+                } else if (this.props.highlight) {
+                    clickHandler = this.props.clearHighlight;
                 }
 
-                return <Chesspiece key={piece.type + square}
-                    piece={piece} square={square}
-                    from = {square === move.to && move.from}
-                    clickHandler={clickHandler} />
+                return (
+                    <Chesspiece key={piece.type + square}
+                        piece={piece} square={square}
+                        from = {square === move.to && move.from}
+                        clickHandler={clickHandler} />
+                );
             });
     }
 }

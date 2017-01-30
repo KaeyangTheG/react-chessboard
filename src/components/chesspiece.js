@@ -13,19 +13,16 @@ export default ({piece, square, clickHandler, from = null}) => {
         `move-${from ? getSquareDistance(from, square) : 3}`,
         from ? 'moving' : ''
     ].join(' ');
-    if (from) {
-        console.log(from || square,":",`${square}-active`);
-    }
+
     return (
         <ReactCSSTransitionGroup
             transitionName= {{
                 appear: from || square,
-                appearActive: `${square}-active`,
+                appearActive: `${square}-active`
             }}
             transitionAppear={true}
             transitionAppearTimeout={400}
-            transitionEnter={false}
-            transitionLeave={false}>
+            transitionEnter={false}>
             <piece onClick={clickHandler} className={className}>
             </piece>
         </ReactCSSTransitionGroup>
