@@ -22,8 +22,6 @@ body {
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
-    background: url('../assets/chessboard.png') center center no-repeat;
-    background-size: contain;
 }
 
 .square {
@@ -52,8 +50,8 @@ body {
     width: 12.5%;
     height: 12.5%;
     cursor: pointer;
-    background-size: 95% auto;
-    background-position: center center;
+    background-size: contain;
+    background-position: center bottom;
     background-repeat: no-repeat;
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
@@ -63,22 +61,22 @@ body {
 
 
 .wknight {
-    background-image: url('../assets/lknight.png');
+    background-image: url('../assets/wknight.png');
 }
 .wbishop {
-    background-image: url('../assets/lbishop.png');
+    background-image: url('../assets/wbishop.png');
 }
 .wrook {
-    background-image: url('../assets/lrook.png');
+    background-image: url('../assets/wrook.png');
 }
 .wking {
-    background-image: url('../assets/lking.png');
+    background-image: url('../assets/wking.png');
 }
 .wqueen {
-    background-image: url('../assets/lqueen.png');
+    background-image: url('../assets/wqueen.png');
 }
 .wpawn {
-    background-image: url('../assets/lpawn.png');
+    background-image: url('../assets/wpawn.png');
 }
 
 .bknight {
