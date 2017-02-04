@@ -8,17 +8,10 @@ import Chesspiece from '../components/chesspiece';
 import Highlight from '../components/highlight';
 import Movehelper from '../components/move_helper';
 import {PATTERN, SQUARES} from '../utils/board_util';
-import {getMove, getScore} from '../utils/chess_engine';
 
 class Chessboard extends Component {
     componentWillUpdate (nextProps) {
         this.board = new Chess(nextProps.fen);
-        getScore(nextProps.fen)
-            .then((score) => {
-                console.log(score);
-            })
-            .then(getMove.bind(this, nextProps.fen))
-            .then((move) => console.log(move));
     }
 
     render () {
@@ -46,6 +39,7 @@ class Chessboard extends Component {
                             square={square} origin={this.props.highlight}
                             isCapture= {this.board.get(square)}
                             clickHandler = {
+                                    this.isHumanTurn() &&
                                     this.props.updatePosition.bind(this, {
                                         from: this.props.highlight,
                                         to: square
@@ -65,6 +59,11 @@ class Chessboard extends Component {
         if (this.props.highlight) {
             this.props.clearHighlight();
         }
+    }
+
+    isHumanTurn () {
+        const board = this.board || new Chess(this.props.fen);
+        return this.props.players[board.turn()] === 'hu';
     }
 
     //get all legal moves from the provided origin square
@@ -90,7 +89,9 @@ class Chessboard extends Component {
                 const piece = board.get(square);
                 let clickHandler;
 
-                if (board.turn() === piece.color &&
+                if (!this.isHumanTurn()) {
+                    clickHandler = null;
+                } else if (board.turn() === piece.color &&
                     square !== this.props.highlight) {
                     clickHandler = this.props.highlightSquare.bind(this, square);
                 } else if (this.props.highlight) {
@@ -107,13 +108,14 @@ class Chessboard extends Component {
     }
 }
 
-function mapStateToProps ({position}) {
+function mapStateToProps ({position, players}) {
     const {fen, move, highlight} = position;
 
     return {
         fen,
         move,
-        highlight
+        highlight,
+        players
     };
 }
 

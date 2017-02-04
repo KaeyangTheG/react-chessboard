@@ -20,7 +20,7 @@ export default ({square, origin, clickHandler, isCapture=false}) => {
               appearActive: `${square}-active`
           }}
           transitionAppear={true}
-          transitionAppearTimeout={200}
+          transitionAppearTimeout={400}
           transitionEnter={false}
           transitionLeave={false}>
             <div className={className} onClick={clickHandler}></div>

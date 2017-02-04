@@ -2,6 +2,7 @@ const enginePath = '../../node_modules/stockfish/src/stockfish.js';
 const engine = new Worker(enginePath);
 
 window.stockfish = engine;
+let initialized = false;
 
 export function getMove (fen) {
     return init()
@@ -34,14 +35,17 @@ export function getScore (fen) {
 }
 
 function init () {
-    return new Promise((resolve) => {
-        engine.onmessage = ({data}) => {
-            if (data === 'uciok') {
-                resolve(data);
-            }
-        };
-        send('uci');
-    });
+    return initialized
+        ? Promise.resolve('uciok')
+        : new Promise((resolve) => {
+            engine.onmessage = ({data}) => {
+                if (data === 'uciok') {
+                    initialized = true;
+                    resolve(data);
+                }
+            };
+            send('uci');
+        });
 }
 
 function send (str) {

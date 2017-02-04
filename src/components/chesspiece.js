@@ -21,7 +21,7 @@ export default ({piece, square, clickHandler, from = null}) => {
                 appearActive: `${square}-active`
             }}
             transitionAppear={true}
-            transitionAppearTimeout={200}
+            transitionAppearTimeout={400}
             transitionLeave={false}
             transitionEnter={false}>
             <piece onClick={clickHandler} className={className}>
