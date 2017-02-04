@@ -8,10 +8,17 @@ import Chesspiece from '../components/chesspiece';
 import Highlight from '../components/highlight';
 import Movehelper from '../components/move_helper';
 import {PATTERN, SQUARES} from '../utils/board_util';
+import {getMove, getScore} from '../utils/chess_engine';
 
 class Chessboard extends Component {
     componentWillUpdate (nextProps) {
         this.board = new Chess(nextProps.fen);
+        getScore(nextProps.fen)
+            .then((score) => {
+                console.log(score);
+            })
+            .then(getMove.bind(this, nextProps.fen))
+            .then((move) => console.log(move));
     }
 
     render () {
