@@ -21893,10 +21893,9 @@
 	});
 	exports.getMove = getMove;
 	exports.getScore = getScore;
-	var enginePath = '../../node_modules/stockfish/src/stockfish.js';
+	var enginePath = './lib/stockfish.js';
 	var engine = new Worker(enginePath);
 
-	window.stockfish = engine;
 	var initialized = false;
 
 	function getMove(fen) {

@@ -1,4 +1,4 @@
-const enginePath = '../../lib/stockfish.js';
+const enginePath = './lib/stockfish.js';
 const engine = new Worker(enginePath);
 
 let initialized = false;
