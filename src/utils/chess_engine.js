@@ -1,7 +1,6 @@
-const enginePath = '../../node_modules/stockfish/src/stockfish.js';
+const enginePath = '../../lib/stockfish.js';
 const engine = new Worker(enginePath);
 
-window.stockfish = engine;
 let initialized = false;
 
 export function getMove (fen) {
